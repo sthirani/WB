@@ -1,0 +1,34 @@
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String[] words=str.split(" ");
+        if(pattern.length()!=words.length)
+            return false;
+        
+        HashMap<String, Character> pmap=new HashMap<>();
+        HashMap<Character, String> smap=new HashMap<>();
+        for(int i=0;i<pattern.length();i++)
+        {
+            //char ch=pattern.charAt(i);
+            String s=smap.get(pattern.charAt(i));
+            Character c=pmap.get(words[i]);
+            if(s==null && c==null)
+            {
+                s=words[i];
+                pmap.put(s,pattern.charAt(i));
+                smap.put(pattern.charAt(i),s);
+            }
+            else if(s!=null && c!=null)
+            {
+                if(pmap.get(s)!=c)
+                    return false;
+                if(smap.get(pattern.charAt(i))!=s)
+                    return false;
+            
+            }
+            else
+                return false;
+                
+        }
+        return true;
+    }
+}

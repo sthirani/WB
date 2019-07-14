@@ -1,0 +1,25 @@
+class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> map=new HashSet<>();
+        int sqsum=0;
+        while(!map.contains(n))
+        {
+            map.add(n);
+             while(n>0)
+            {
+                int digit=n%10;
+                sqsum=sqsum+digit*digit;
+                   
+               n=n/10;
+             } 
+          
+           if(sqsum==1)
+                return true;
+            
+            n=sqsum;
+            sqsum=0;
+        }
+        
+       return false; 
+    }
+}
